@@ -83,6 +83,16 @@
         .content {
             flex: 1;
         }
+        .like-dislike-container {
+            text-align: center;
+            margin-top: 2em;
+        }
+        .like-dislike-container button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
     </style>
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
     <script type="text/javascript">
@@ -100,6 +110,49 @@
             myMap.geoObjects.add(myPlacemark);
         }
         ymaps.ready(init);
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let likes = localStorage.getItem('likes') || 0;
+            let dislikes = localStorage.getItem('dislikes') || 0;
+            let voted = localStorage.getItem('voted') || false;
+
+            document.getElementById('likes').innerText = likes;
+            document.getElementById('dislikes').innerText = dislikes;
+
+            if (voted) {
+                disableButtons();
+            }
+
+            document.getElementById('like-button').addEventListener('click', function() {
+                if (!voted) {
+                    likes++;
+                    localStorage.setItem('likes', likes);
+                    document.getElementById('likes').innerText = likes;
+                    setVoted();
+                }
+            });
+
+            document.getElementById('dislike-button').addEventListener('click', function() {
+                if (!voted) {
+                    dislikes++;
+                    localStorage.setItem('dislikes', dislikes);
+                    document.getElementById('dislikes').innerText = dislikes;
+                    setVoted();
+                }
+            });
+
+            function setVoted() {
+                localStorage.setItem('voted', true);
+                voted = true;
+                disableButtons();
+            }
+
+            function disableButtons() {
+                document.getElementById('like-button').disabled = true;
+                document.getElementById('dislike-button').disabled = true;
+            }
+        });
     </script>
 </head>
 <body>
@@ -120,9 +173,14 @@
                 <h2>О Нас</h2>
                 <p>Мы - команда профессионалов с многолетним опытом работы в сфере ремонта бытовой техники. Наша цель - обеспечить качественный и быстрый ремонт вашей стиральной машины, используя только лучшие запчасти и современные технологии.</p>
             </div>
+            <div class="like-dislike-container">
+                <button id="like-button">👍 Нравится</button>
+                <button id="dislike-button">👎 Не нравится</button>
+                <p>Лайков: <span id="likes">0</span>, Дизлайков: <span id="dislikes">0</span></p>
+            </div>
             <div class="container" id="contact">
                 <h2>Контакты</h2>
-                <p>Телефон: +7 916 759 46 28</p>
+                Телефон: +7 916 759 46 28</p>
         <p>Email: alekermolaev@yandex.ru</p>
   <div class="map-container">
                     <div id="map"></div>
