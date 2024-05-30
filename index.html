@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ремонт Стиральных Машин</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #1E90FF; /* Цвет моря */
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        nav {
+            text-align: center;
+            background-color: #333;
+            padding: 0.5em 0;
+        }
+        nav a {
+            color: white;
+            margin: 0 1em;
+            text-decoration: none;
+        }
+        .container {
+            padding: 2em;
+        }
+        .service {
+            background-color: white;
+            padding: 1em;
+            margin-bottom: 1em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .map-container {
+            margin-top: 2em;
+        }
+        #map {
+            width: 100%;
+            height: 400px;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            width: 100%;
+        }
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .whatsapp-button img {
+            width: 35px;
+            height: 35px;
+        }
+        .footer-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content {
+            flex: 1;
+        }
+    </style>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script type="text/javascript">
+        function init() {
+            var myMap = new ymaps.Map("map", {
+                center: [55.681975, 37.901182], // Координаты адреса
+                zoom: 15
+            });
+
+            var myPlacemark = new ymaps.Placemark([55.681975, 37.901182], {
+                hintContent: 'Ремонт Стиральных Машин',
+                balloonContent: 'Московская область, город Люберцы, ул. Колхозная 12'
+            });
+
+            myMap.geoObjects.add(myPlacemark);
+        }
+        ymaps.ready(init);
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Ремонт Стиральных Машин</h1>
+        <p>Качественный ремонт и обслуживание стиральных машин в вашем городе</p>
+    </header>
+    <nav>
+        <a href="index2.html">Услуги</a>
+        <a href="#about">О Нас</a>
+        <a href="#contact">Контакты</a>
+        <a href="#locations">Где мы работаем</a>
+        <a href="#discounts">Скидки и Акции</a>
+    </nav>
+    <div class="footer-wrapper">
+        <div class="content">
+            <div class="container" id="about">
+                <h2>О Нас</h2>
+                <p>Мы - команда профессионалов с многолетним опытом работы в сфере ремонта бытовой техники. Наша цель - обеспечить качественный и быстрый ремонт вашей стиральной машины, используя только лучшие запчасти и современные технологии.</p>
+            </div>
+            <div class="container" id="contact">
+                <h2>Контакты</h2>
+                <p>Телефон: +7 916 759 46 28</p>
+        <p>Email: alekermolaev@yandex.ru</p>
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+            </div>
+            <div class="container" id="locations">
+                <h2>Где мы работаем</h2>
+                <p>Люберцы, Лыткарино, Котельники, Дзержинский, Москва, метро Некрасовка, Кожухово, Лермонтовский проспект, Жулебино, Выхино, Рязанский проспект, Кузьминки, Новогиреево, Марьино</p>
+            </div>
+            <div class="container" id="discounts">
+                <h2>Скидки и Акции</h2>
+                <p>Скидки 20% пенсионерам, многодетным семьям, инвалидам, и на первый заказ</p>
+                <p>Летом скидка 8% на все заказы</p>
+            </div>
+        </div>
+        <footer class="footer">
+            <p>&copy; 2024 Ремонт Стиральных Машин. Все права защищены.</p>
+        </footer>
+    </div>
+    <a href="https://wa.me/79167594628" class="whatsapp-button" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+</body>
+</html>
