@@ -111,33 +111,56 @@
         }
         ymaps.ready(init);
     </script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.1/firebase-database-compat.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let likes = localStorage.getItem('likes') || 0;
-            let dislikes = localStorage.getItem('dislikes') || 0;
-            let voted = localStorage.getItem('voted') || false;
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB5wWRDJar_oXXLIt7pCpQjozdIN2l4g48",
+            authDomain: "dizmai.firebaseapp.com",
+            databaseURL: "https://dizmai.firebaseio.com",
+            projectId: "dizmai",
+            storageBucket: "dizmai.appspot.com",
+            messagingSenderId: "1:899214146167:web:4850464a5f3b8973f76472",
+            appId: "dizmai"
+        };
 
-            document.getElementById('likes').innerText = likes;
-            document.getElementById('dislikes').innerText = dislikes;
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            let voted = localStorage.getItem('voted') || false;
 
             if (voted) {
                 disableButtons();
             }
 
+            const likesRef = database.ref('likes');
+            const dislikesRef = database.ref('dislikes');
+
+            likesRef.on('value', (snapshot) => {
+                document.getElementById('likes').innerText = snapshot.val();
+            });
+
+            dislikesRef.on('value', (snapshot) => {
+                document.getElementById('dislikes').innerText = snapshot.val();
+            });
+
             document.getElementById('like-button').addEventListener('click', function() {
                 if (!voted) {
-                    likes++;
-                    localStorage.setItem('likes', likes);
-                    document.getElementById('likes').innerText = likes;
+                    likesRef.transaction((currentLikes) => {
+                        return (currentLikes || 0) + 1;
+                    });
                     setVoted();
                 }
             });
 
             document.getElementById('dislike-button').addEventListener('click', function() {
                 if (!voted) {
-                    dislikes++;
-                    localStorage.setItem('dislikes', dislikes);
-                    document.getElementById('dislikes').innerText = dislikes;
+                    dislikesRef.transaction((currentDislikes) => {
+                        return (currentDislikes || 0) + 1;
+                    });
                     setVoted();
                 }
             });
@@ -180,9 +203,9 @@
             </div>
             <div class="container" id="contact">
                 <h2>Контакты</h2>
-                Телефон: +7 916 759 46 28</p>
+                <p>Телефон: +7 916 759 46 28</p>
         <p>Email: alekermolaev@yandex.ru</p>
-  <div class="map-container">
+                <div class="map-container">
                     <div id="map"></div>
                 </div>
             </div>
