@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Услуги - Ремонт Стиральных Машин</title>
+    <title>Наши Услуги - Ремонт Стиральных Машин</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -26,92 +26,163 @@
             color: white;
             margin: 0 1em;
             text-decoration: none;
+            font-size: 1.2em;
         }
         .container {
             padding: 2em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
         }
         .service {
+            position: relative;
             background-color: white;
-            padding: 1em;
-            margin-bottom: 1em;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 1.5em;
+            margin: 1em;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            flex-basis: calc(33% - 2em);
+            box-sizing: border-box;
+            overflow: hidden;
         }
-        footer {
+        .service:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+        }
+        .service h3 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+        .price-panel {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1em;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        .service:hover .price-panel {
+            transform: translateY(0);
+        }
+        .footer {
             background-color: #333;
             color: white;
             text-align: center;
             padding: 1em 0;
-            position: fixed;
             width: 100%;
-            bottom: 0;
         }
-        .whatsapp-button {
+        .whatsapp-button, .telegram-button {
             position: fixed;
             bottom: 20px;
-            right: 20px;
             width: 60px;
             height: 60px;
-            background-color: #25D366;
             border-radius: 50%;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: center;
             align-items: center;
+            z-index: 1000;
         }
-        .whatsapp-button img {
+        .whatsapp-button {
+            right: 90px;
+            background-color: #25D366;
+        }
+        .telegram-button {
+            right: 20px;
+            background-color: #0088cc;
+        }
+        .whatsapp-button img, .telegram-button img {
             width: 35px;
             height: 35px;
+        }
+        @media (max-width: 768px) {
+            .service {
+                flex-basis: calc(50% - 2em);
+            }
+        }
+        @media (max-width: 480px) {
+            nav a {
+                display: block;
+                margin: 0.5em 0;
+            }
+            .service {
+                flex-basis: calc(100% - 2em);
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Ремонт Стиральных Машин</h1>
-        <p>Качественный ремонт и обслуживание стиральных машин в вашем городе</p>
+        <h1>Наши Услуги</h1>
     </header>
     <nav>
         <a href="index.html">Главная</a>
-        <a href="#services">Услуги</a>
-        <a href="index.html#about">О Нас</a>
-        <a href="index.html#contact">Контакты</a>
+        <a href="index2.html">Услуги</a>
     </nav>
-    <div class="container" id="services">
-        <h2>Наши Услуги</h2>
+    <div class="container">
         <div class="service">
             <h3>Диагностика</h3>
-            <p>Диагностика 1200 руб. без ремонта, с ремонтом бесплатная</p>
+            <div class="price-panel">1200 руб. без ремонта, с ремонтом бесплатно</div>
         </div>
         <div class="service">
             <h3>Замена подшипников и сальника</h3>
-            <p>Замена подшипников и сальника 8.000 руб</p>
+            <div class="price-panel">8.000 руб</div>
         </div>
         <div class="service">
             <h3>Установка и подключение новых машинок</h3>
-            <p>Установка и подключение новых машинок 2000 руб</p>
+            <div class="price-panel">2000 руб</div>
         </div>
         <div class="service">
             <h3>Утилизация машинок</h3>
-            <p>Утилизация машинок 0 руб</p>
+            <div class="price-panel">бесплатно</div>
         </div>
         <div class="service">
             <h3>Консультации по ремонту машинок по телефону</h3>
-            <p>Консультации по ремонту машинок по телефону 0 руб.</p>
+            <div class="price-panel">бесплатно</div>
         </div>
         <div class="service">
-            <h3>Диагностика по видео сообщению</h3>
-            <p>Возможна диагностика по видео сообщению за благодарность</p>
+            <h3>Возможна диагностика по видео сообщению за благодарность</h3>
+            <div class="price-panel">За благодарность</div>
         </div>
         <div class="service">
-            <h3>Продажи восстановленных машинок</h3>
-            <p>Возможны продажи восстановленных машинок цена по договору</p>
+            <h3>Возможны продажи восстановленных машинок</h3>
+            <div class="price-panel">Цена по договору</div>
+        </div>
+        <div class="service">
+            <h3>Замена насоса</h3>
+            <div class="price-panel">4000 руб</div>
+        </div>
+        <div class="service">
+            <h3>Замена тэна</h3>
+            <div class="price-panel">4000 руб</div>
+        </div>
+        <div class="service">
+            <h3>Замена щёток мотора</h3>
+            <div class="price-panel">3500 руб</div>
+        </div>
+        <div class="service">
+            <h3>Прочистка засора</h3>
+            <div class="price-panel">2000 руб</div>
+        </div>
+        <div class="service">
+            <h3>Замена фильтра питания</h3>
+            <div class="price-panel">1500 руб</div>
         </div>
     </div>
-    <footer>
+    <footer class="footer">
         <p>&copy; 2024 Ремонт Стиральных Машин. Все права защищены.</p>
     </footer>
     <a href="https://wa.me/79167594628" class="whatsapp-button" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+    <a href="https://t.me/Rimont_steralok_bot" class="telegram-button" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
     </a>
 </body>
 </html>
